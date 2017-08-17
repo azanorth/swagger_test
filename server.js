@@ -4,6 +4,7 @@ const Vision = require('vision');
 const HapiSwagger = require('hapi-swagger');
  
 const server = new Hapi.Server();
+
 server.connection({
         host: 'localhost',
         port: 3000
@@ -17,16 +18,12 @@ const options = {
     },
     tags: [
       {
-        'name': 'main',
-        'description': 'method get swagger.'
-      },
-      {
-        'name': '{name}',
-        'description': 'method get swagger.'
+        'name': 'get',
+        'description': 'methods get hapiJs.'
       },
       {
         'name': 'post',
-        'description': 'method post swagger.'
+        'description': 'methods post hapiJs.'
       }
     ],
     documentationPath: '/docs'
@@ -47,5 +44,5 @@ server.register([
             }
         });
     });
- 
-server.route(require('./routes'));
+
+server.route(require('./src/routes'));

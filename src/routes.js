@@ -3,7 +3,7 @@ const Shcemas = require('./validator')
 const Routes = [
 {
   method: 'GET',
-  path: '/main',
+  path: '/get/main',
   config: {
     handler: (req, reply) => {
       reply('Hello world!');
@@ -16,11 +16,11 @@ const Routes = [
         responses: {
           '200': {
             'description': 'object founded.',
-            'schema': Shcemas.getShema
+            'schema': Shcemas.getSchema
           },
           '404': {
             'description': 'object not found.',
-            'shcema': Shcemas.getNotFoundShema
+            'schema': Shcemas.getNotFoundSchema
           }
         }
       }
@@ -29,7 +29,7 @@ const Routes = [
 },
 {
   method: 'GET',
-  path: '/{name}',
+  path: '/get/{name}',
   config: {
     handler: (req, reply) => {
       reply('Hello ' + encodeURIComponent(req.params.name) + ' !');
@@ -42,11 +42,11 @@ const Routes = [
         responses: {
           '200': {
             'description': 'object founded.',
-            'schema': Shcemas.getShema
+            'schema': Shcemas.getSchema
           },
           '404': {
             'description': 'object not found.',
-            'shcema': Shcemas.getNotFoundShema
+            'schema': Shcemas.getNotFoundSchema
           }
         }
       }
@@ -54,7 +54,7 @@ const Routes = [
   }
 },
 {
-  method: 'POST',
+  method: 'post',
   path: '/post',
   config: {
     handler: (req, reply) => {
@@ -68,11 +68,37 @@ const Routes = [
         responses: {
           '200': {
             'description': 'object founded.',
-            'shcema': Shcemas.postShema
+            'schema': Shcemas.postSchema
           },
           '404': {
             'description': 'object not found.',
-            'shcema': Shcemas.postNotFoundShema
+            'schema': Shcemas.postNotFoundSchema
+          }
+        }
+      }
+    }
+  }
+},
+{
+  method: 'GET',
+  path: '/get/boo',
+  config: {
+    handler: (req, reply) => {
+      reply('Hello world!');
+    },
+    description: 'get',
+    notes: 'third method GET',
+    tags: ['api'],
+    plugins: {
+      'hapi-swagger': {
+        responses: {
+          '200': {
+            'description': 'object founded.',
+            'schema': Shcemas.getSchema
+          },
+          '404': {
+            'description': 'object not found.',
+            'schema': Shcemas.getNotFoundSchema
           }
         }
       }
